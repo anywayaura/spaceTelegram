@@ -19,6 +19,8 @@ def main():
 
     def bot_notify(chat_id, text):
         bot.send_message(chat_id, text)
+        with open(r'nasa_apod/rhooph_tan_big.jpg', 'rb') as f:
+            bot.send_photo(chat_id, f)
 
     @bot.message_handler(func=lambda message: True)
     def echo_all(message):
