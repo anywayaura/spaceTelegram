@@ -11,7 +11,7 @@ def fetch_spacex_latest():
     response.raise_for_status()
 
     for img in response.json()['links']['flickr_images']:
-        download_file(img, 'spacex_latest')
+        download_file(img, 'images')
 
 
 def fetch_spacex_by_id(id):
@@ -19,7 +19,7 @@ def fetch_spacex_by_id(id):
     response.raise_for_status()
 
     for img in response.json()['links']['flickr']['original']:
-        download_file(img, f'spacex_{id}')
+        download_file(img, f'images')
 
 
 def main():

@@ -15,13 +15,13 @@ def get_nasa_apod(api_key, count=10):
     response.raise_for_status()
 
     for apod in response.json():
-        download_file(apod.get('hdurl'), 'nasa_apod')
+        download_file(apod.get('hdurl'), 'images')
 
 
 def main():
     logging.basicConfig(level=logging.INFO)
     try:
-        get_nasa_apod(os.getenv('NASA_API_KEY'), 5)
+        get_nasa_apod(os.getenv('NASA_API_KEY'))
     except ConnectionError as ex:
         logging.error(f'Internet Problems: {ex}')
     except requests.exceptions.HTTPError:

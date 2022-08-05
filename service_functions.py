@@ -18,6 +18,10 @@ def get_extension(url):
     return os.path.splitext(url)[-1]
 
 
+def read_directory(directory: str) -> list:
+    return os.listdir(directory)
+
+
 def main():
     pass
 
