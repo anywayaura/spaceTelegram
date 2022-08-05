@@ -17,9 +17,14 @@ def main():
     def post(message):
         bot.reply_to(message, 'Hei this is a post i sent to u xoxo')
 
+    def bot_notify(chat_id, text):
+        bot.send_message(chat_id, text)
+
     @bot.message_handler(func=lambda message: True)
     def echo_all(message):
         bot.reply_to(message, message.text)
+
+    bot_notify(chat_id, 'I am running here ok?')
 
     bot.infinity_polling()
     
