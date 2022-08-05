@@ -32,10 +32,6 @@ def main():
             bot.send_photo(chat_id, f)
         time.sleep(post_delay)
 
-    # bot_post(chat_id, 'rhooph_tan_big.jpg')
-
-
-
 
 if __name__ == '__main__':
     main()
