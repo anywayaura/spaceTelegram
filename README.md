@@ -64,7 +64,7 @@ _setup env variables:_
 
 `SPACE_TELEGRAM_CHAT_ID` - chat id u want to post images (bot have to be administrator of this group)
 
-`SPACE_TELEGRAM_DELAY_HOURS` - how often (hrs)
+`SPACE_TELEGRAM_DELAY_HOURS` - how often (hrs, default is 4)
 
 ```
 python space_telegram.py
