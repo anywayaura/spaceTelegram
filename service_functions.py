@@ -1,5 +1,6 @@
 import os
 from pathlib import Path
+from urllib.parse import urlparse, unquote
 
 import requests
 
@@ -8,7 +9,8 @@ def download_file(url, path):
     response = requests.get(url)
     response.raise_for_status()
     Path(path).mkdir(parents=True, exist_ok=True)
-    file_path = os.path.join(path, url.split('/')[-1])
+    filename = urlparse(unquote(url)).path.split('/')[-1]
+    file_path = os.path.join(path, filename)
 
     with open(file=file_path, mode='wb') as f:
         f.write(response.content)
@@ -23,7 +25,7 @@ def read_directory(directory: str) -> list:
 
 
 def main():
-    pass
+    download_file('https://wylsa.com/wp-content/uploads/2018/09/ffsdfsd.jpg#title?fycjers=wtf&idk=lol', 'images')
 
 
 if __name__ == '__main__':
