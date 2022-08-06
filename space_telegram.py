@@ -11,10 +11,10 @@ from service_functions import read_directory
 def main():
     logging.basicConfig(level=logging.INFO)
 
-    bot = telebot.TeleBot(os.environ['SPACE_TELEGRAM_BOT_API_KEY'])
-    chat_id = os.environ['SPACE_TELEGRAM_CHAT_ID']
+    bot = telebot.TeleBot(os.environ['TG_BOT_API_KEY'])
+    chat_id = os.environ['TG_CHAT_ID']
     image_list = []
-    post_delay = int(os.getenv('SPACE_TELEGRAM_DELAY_HOURS', default=4)) * 3600
+    post_delay = int(os.getenv('TG_POST_DELAY', default=4)) * 3600
 
     while True:
         try:

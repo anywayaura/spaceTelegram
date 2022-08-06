@@ -60,11 +60,11 @@ ___
 
 _setup env variables:_
 
-`SPACE_TELEGRAM_BOT_API_KEY` - your telegram bot api
+`TG_BOT_API_KEY` - your telegram bot api
 
-`SPACE_TELEGRAM_CHAT_ID` - chat id u want to post images (bot have to be administrator of this group)
+`TG_CHAT_ID` - chat id u want to post images (bot have to be administrator of this group)
 
-`SPACE_TELEGRAM_DELAY_HOURS` - how often (hrs, default is 4)
+`TG_POST_DELAY` - how often (hrs, default is 4)
 
 ```
 python space_telegram.py
