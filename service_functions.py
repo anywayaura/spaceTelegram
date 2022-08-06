@@ -23,10 +23,3 @@ def get_extension(url):
 def read_directory(directory: str) -> list:
     return os.listdir(directory)
 
-
-def main():
-    download_file('https://wylsa.com/wp-content/uploads/2018/09/ffsdfsd.jpg#title?fycjers=wtf&idk=lol', 'images')
-
-
-if __name__ == '__main__':
-    main()

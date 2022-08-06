@@ -16,10 +16,6 @@ def main():
     image_list = []
     post_delay = int(os.getenv('SPACE_TELEGRAM_DELAY_HOURS', default=4)) * 3600
 
-    def bot_post(chat_id, image_filename):
-        with open(f'images{image_filename}', 'rb') as f:
-            bot.send_photo(chat_id, f)
-
     while True:
         if not image_list:
             image_list = read_directory('images')
