@@ -15,7 +15,7 @@ def get_nasa_apod(api_key, count=10):
     response.raise_for_status()
 
     for apod in response.json():
-        download_file(apod.get('hdurl'), 'images')
+        download_file(apod.get('hdurl', 'url'), 'images')
 
 
 def main():
