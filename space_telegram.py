@@ -17,16 +17,20 @@ def main():
     post_delay = int(os.getenv('SPACE_TELEGRAM_DELAY_HOURS', default=4)) * 3600
 
     while True:
-        if not image_list:
-            image_list = read_directory('images')
+        try:
             if not image_list:
-                logging.error('Image folder Empty, pleas fetch some pics.')
-                break
-        random.shuffle(image_list)
-        filename = os.path.join('images', image_list.pop())
-        with open(filename, 'rb') as f:
-            bot.send_photo(chat_id, f)
-        time.sleep(post_delay)
+                image_list = read_directory('images')
+                if not image_list:
+                    logging.error('Image folder Empty, pleas fetch some pics.')
+                    break
+            random.shuffle(image_list)
+            filename = os.path.join('images', image_list.pop())
+            with open(filename, 'rb') as f:
+                bot.send_photo(chat_id, f)
+            time.sleep(post_delay)
+        except ConnectionError as _exce:
+            logging.error(f'No internet connection ({_exce})')
+            time.sleep(10)
 
 
 if __name__ == '__main__':
