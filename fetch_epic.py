@@ -9,8 +9,8 @@ def get_epic():
     response = requests.get('http://epic.gsfc.nasa.gov/api/images.php')
     response.raise_for_status()
 
-    for i in response.json():
-        download_file(f'http://epic.gsfc.nasa.gov/epic-archive/jpg/{i["image"]}.jpg', 'images')
+    for img in response.json():
+        download_file(f'http://epic.gsfc.nasa.gov/epic-archive/jpg/{img["image"]}.jpg', 'images')
 
 
 def main():
