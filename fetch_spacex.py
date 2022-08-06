@@ -10,11 +10,13 @@ def fetch_spacex(param):
     response = requests.get(f'https://api.spacexdata.com/v5/launches/{param}')
     response.raise_for_status()
 
+    launches = response.json()
+
     if param == 'latest':
-        for img in  response.json()['links']['flickr_images']:
+        for img in launches['links']['flickr_images']:
             download_file(img, f'images')
     else:
-        for img in response.json()['links']['flickr']['original']:
+        for img in launches['links']['flickr']['original']:
             download_file(img, f'images')
 
 
@@ -22,14 +24,11 @@ def main():
     logging.basicConfig(level=logging.INFO)
 
     parser = argparse.ArgumentParser(description='Script downloads spacex latest or specified (-id <id>) flight photos')
-    parser.add_argument('-id', help='id of the flight to fetch')
+    parser.add_argument('id', help='id of the flight to fetch', nargs='?', default='latest')
     args = parser.parse_args()
 
     try:
-        if args.id:
-            fetch_spacex(args.id)
-        else:
-            fetch_spacex('latest')
+        fetch_spacex(args.id)
     except ConnectionError as ex:
         logging.error(f'Internet Problems: {ex}')
     except requests.exceptions.HTTPError:
