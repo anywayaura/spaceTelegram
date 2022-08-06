@@ -21,7 +21,7 @@ def get_nasa_apod(api_key, count=10):
 def main():
     logging.basicConfig(level=logging.INFO)
     try:
-        get_nasa_apod(os.getenv('NASA_API_KEY'))
+        get_nasa_apod(os.environ['NASA_API_KEY'])
     except ConnectionError as ex:
         logging.error(f'Internet Problems: {ex}')
     except requests.exceptions.HTTPError:
