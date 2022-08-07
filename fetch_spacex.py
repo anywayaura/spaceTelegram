@@ -10,14 +10,8 @@ def fetch_spacex(param):
     response = requests.get(f'https://api.spacexdata.com/v5/launches/{param}')
     response.raise_for_status()
 
-    launches = response.json()
-
-    if param == 'latest':
-        for img in launches['links']['flickr_images']:
-            download_file(img, f'images')
-    else:
-        for img in launches['links']['flickr']['original']:
-            download_file(img, f'images')
+    for img in response.json()['links']['flickr']['original']:
+        download_file(img, f'images')
 
 
 def main():
@@ -34,7 +28,7 @@ def main():
     except requests.exceptions.HTTPError:
         logging.error(f'What you are looking for cannot be found')
     except KeyError:
-        logging.error(f'The flight has no photos')
+        logging.error(f'Api request error')
 
 
 if __name__ == '__main__':

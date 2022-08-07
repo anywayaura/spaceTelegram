@@ -37,7 +37,7 @@ _usage examples:_
 
 - _fetch specified launch by id:_
 ```
-python fetch_spacex.py '5eb87d47ffd86e000604b38a'
+python fetch_spacex.py 5eb87d47ffd86e000604b38a
 ```
 - _fetch latest launch (have in mind: not every launch has photos)_
 ```
