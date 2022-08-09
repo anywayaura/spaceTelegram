@@ -4,11 +4,14 @@ import random
 import time
 
 import telebot
+import requests
+from dotenv import load_dotenv
 
 from service_functions import read_directory
 
 
 def main():
+    load_dotenv()
     logging.basicConfig(level=logging.INFO)
 
     bot = telebot.TeleBot(os.environ['TG_BOT_API_KEY'])
@@ -21,14 +24,14 @@ def main():
             if not image_list:
                 image_list = read_directory('images')
                 if not image_list:
-                    logging.error('Image folder Empty, pleas fetch some pics.')
+                    logging.error('Image folder Empty, please fetch some pics.')
                     break
             random.shuffle(image_list)
             filename = os.path.join('images', image_list.pop())
             with open(filename, 'rb') as f:
                 bot.send_photo(chat_id, f)
             time.sleep(post_delay)
-        except ConnectionError as _exce:
+        except requests.exceptions.ConnectionError as _exce:
             logging.error(f'No internet connection ({_exce})')
             time.sleep(10)
 
