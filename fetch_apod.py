@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 from service_functions import download_file
 
 
-def get_nasa_apod(api_key, count=10):
+def get_nasa_apod(api_key, count=100):
     params = {
         'api_key': api_key,
         'count': count
@@ -16,7 +16,7 @@ def get_nasa_apod(api_key, count=10):
     response.raise_for_status()
 
     for apod in response.json():
-        download_file(apod.get('hdurl', 'url'), 'images')
+        download_file(apod['url'], 'images')
 
 
 def main():
